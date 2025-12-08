@@ -1,5 +1,6 @@
 package org.example;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,8 +34,11 @@ public class Main {
                 String title = sc.nextLine().trim();
                 System.out.print("내용 : ");
                 String body = sc.nextLine().trim();
+                LocalDateTime now = LocalDateTime.now();
+                LocalDateTime newNow = LocalDateTime.now();
 
-                Article article = new Article(id, title, body);
+
+                Article article = new Article(id, title, body, now, newNow);
                 articles.add(article);
 
                 System.out.println(id + "번 글이 작성되었습니다.");
@@ -71,6 +75,7 @@ public class Main {
                 System.out.println("번호 : " + foundArticle.getId());
                 System.out.println("제목 : " + foundArticle.getTitle());
                 System.out.println("내용 : " + foundArticle.getBody());
+                System.out.println("작성 시각 : " + foundArticle.getNow());
 
             } else if (cmd.startsWith("article delete")) {
                 System.out.println("==게시글 삭제==");
@@ -112,10 +117,15 @@ public class Main {
                 }
                 System.out.println("기존 title : " + foundArticle.getTitle());
                 System.out.println("기존 body : " + foundArticle.getBody());
+                System.out.println("기존 now : " + foundArticle.getNow());
                 System.out.print("새 제목 : ");
                 String newTitle = sc.nextLine().trim();
                 System.out.print("새 내용 : ");
                 String newBody = sc.nextLine().trim();
+                System.out.print("수정 시각 : ");
+                foundArticle.setNow(LocalDateTime.now());
+                System.out.println(LocalDateTime.now());
+
 
                 foundArticle.setTitle(newTitle);
                 foundArticle.setBody(newBody);
@@ -133,6 +143,18 @@ class Article {
     private int id;
     private String title;
     private String body;
+    private LocalDateTime now;
+
+
+    public LocalDateTime getNow() {
+        return now;
+    }
+
+    public void setNow(LocalDateTime now) {
+        this.now = now;
+    }
+
+
 
     public int getId() {
         return id;
@@ -158,9 +180,12 @@ class Article {
         this.body = body;
     }
 
-    public Article(int id, String title, String body) {
+    public Article(int id, String title, String body, LocalDateTime now, LocalDateTime newNow) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.now = now;
+
+
     }
 }
