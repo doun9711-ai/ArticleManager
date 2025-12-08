@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+
+    static List<Article> articles = new ArrayList<>();
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
         System.out.println("==프로그램 시작==");
 
-        int lastArticleId = 0;
+        int lastArticleId = 3;
 
-        List<Article> articles = new ArrayList<>();
 
-       
+        makeTestData();
 
 
         while (true) {
@@ -63,7 +65,7 @@ public class Main {
                 }
 
             } else if (cmd.equals("article search")) {
-                System.out.println("==게시글 검색==");
+                System.out.println("==게시글 검색=="); //article search "오" 로 했을때 오가 포함된 글이 검색 되도록
 
                 boolean IsContains = articles.stream().anyMatch(article -> article.getTitle().contains(cmd));
                 Article foundArticle = null;
@@ -168,6 +170,16 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * 게시글 테스트 데이터 생성
+     **/
+    private static void makeTestData() {
+        System.out.println("==테스트 데이터 생성==");
+        articles.add(new Article(1, "2025-12-07 12:12:12", "2025-12-07 12:12:12", "제목 1", "내용 1"));
+        articles.add(new Article(2, Util.getNowStr(), Util.getNowStr(), "제목 2", "내용 2"));
+        articles.add(new Article(3, Util.getNowStr(), Util.getNowStr(), "제목 3", "내용 3"));
+    }
+
 
 }
 
@@ -226,5 +238,9 @@ class Article {
         this.body = body;
     }
 
-
 }
+
+
+
+
+
