@@ -16,9 +16,10 @@ public class Main {
         System.out.println("==프로그램 시작==");
 
         int lastArticleId = 3;
-        int lastMemberId = 0;
+        int lastMemberId = 3;
 
         makeTestData();
+        makeTestUserData();
 
         while (true) {
             System.out.print("명령어 ) ");
@@ -206,6 +207,13 @@ public class Main {
         articles.add(new Article(1, "2025-12-07 12:12:12", "2025-12-07 12:12:12", "제목 123", "내용 1"));
         articles.add(new Article(2, Util.getNowStr(), Util.getNowStr(), "제목 23", "내용 2"));
         articles.add(new Article(3, Util.getNowStr(), Util.getNowStr(), "제목 1234", "내용 3"));
+    }
+
+    private static void makeTestUserData() {
+        System.out.println("==테스트 유저데이터 생성==");
+        members.add(new Member(1,"2025-12-07","2025-12-08", "test1" , "test1" ,"test1"));
+        members.add(new Member(2,"2025-12-07","2025-12-08", "test2" , "test2" ,"test2"));
+        members.add(new Member(3,"2025-12-07","2025-12-08", "test3" , "test3" ,"test3"));
     }
 }
 
